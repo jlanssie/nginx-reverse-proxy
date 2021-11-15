@@ -1,0 +1,22 @@
+server {
+	# Ports
+	listen 2222 default_server;
+	listen [::]:2222 default_server;
+	
+	# Server name
+	server_name mydomain.com www.mydomain.com;
+
+	# Logs
+	access_log mypath/access.log;
+	error_log mypath/error.log;
+
+	location / {
+                proxy_pass http://127.0.0.1:2223;
+                proxy_redirect http://127.0.0.1:2223 http://www.mydomain.com;
+
+                proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-NginX-Proxy true;
+	}
+}
