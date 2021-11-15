@@ -18,7 +18,7 @@ And include desired options such as http2, ssl, directives for IPv4 and/or IPv6.
 ### 3. Server name
 
 Set the server name of your app equal to your domain names. 
-And include both the domain name with and without www. 
+And include both the domain name with and without www
 
 ### 4. SSL & Logs
 
