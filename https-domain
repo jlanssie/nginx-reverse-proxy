@@ -7,16 +7,16 @@ server {
 	server_name mydomain.com www.mydomain.com;
 
 	# SSL
-    ssl_certificate     mypath/fullchain.pem;
-    ssl_certificate_key mypath/privkey.pem;  
+	ssl_certificate     mypath/fullchain.pem;
+	ssl_certificate_key mypath/privkey.pem;  
 
 	# Logs
 	access_log mypath/access.log;
 	error_log mypath/error.log;
 
 	location / {
-        proxy_pass https://127.0.0.1:3334;
-        proxy_redirect https://127.0.0.1:3334 https://www.mydomain.com;
+		proxy_pass https://127.0.0.1:3334;
+		proxy_redirect https://127.0.0.1:3334 https://www.mydomain.com;
 
         proxy_set_header Host $host;
 		proxy_set_header X-Real-IP $remote_addr;
