@@ -33,13 +33,13 @@ Adapt the proxy_pass and proxy_redirect directives.
 The port number has to match the port number on which your other app is listening (e.g. a NodeJS or Apache app's port number).
 The following header directives are used to pass request header information to your listening app.
 
-### Test 
+### 6. Test 
 
 Test the configuration. 
 
     sudo nginx -t
 
-### Enable 
+### 7. Enable 
 
 Make a symbolic link to each configuration file from inside /etc/nginx/sites-enabled folder 
 
