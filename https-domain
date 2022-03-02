@@ -1,7 +1,7 @@
 server {
 	# Ports
-	listen 3333 ssl http2 default_server;
-	listen [::]:3333 ssl http2 default_server;
+	listen 3333 ssl http2;
+	listen [::]:3333 ssl http2;
 	
 	# Server name
 	server_name mydomain.com www.mydomain.com;
