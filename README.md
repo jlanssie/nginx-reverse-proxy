@@ -15,6 +15,11 @@ Place the configuration files inside the /etc/nginx/sites-available folder.
 Inside each configuration file, adapt the port number on which you want NginX to listen. 
 And include desired options such as http2, ssl, directives for IPv4 and/or IPv6... 
 
+In this example:
+- 3000: http listening port
+- 4000: https listening port
+- 5000: myapp listening port
+
 ### 3. Server name
 
 Set the server name of your app equal to your domain names. 
