@@ -1,0 +1,48 @@
+server {
+        listen 2222 default_server;
+        listen [::]:2222 ipv6only=on default_server;
+
+        #server_name domain.com www.domain.com;
+        server_name _;
+
+        root /var/www/
+
+        location ~ /.well-known {
+                allow all;
+        }
+
+        location / {
+                return 301 https://$host$request_uri;
+        }
+}
+
+server {
+        listen 3333 ssl http2;
+        listen [::]:3333 ssl http2 ipv6only=on;
+
+        server_name domain.com www.domain.com;
+
+        ssl_certificate     /home/site/etc/ssl/fullchain.pem;
+        ssl_certificate_key /home/site/etc/ssl/privkey.pem;
+
+        access_log /var/log/access.log;
+        error_log  /var/log/error.log;
+
+        root /var/www;
+
+        location / {
+                index index.html;
+                try_files $uri $uri/ @nodejs;
+        }
+
+        location @nodejs {
+                proxy_pass https://127.0.0.1:6022;
+                proxy_redirect https://127.0.0.1:6022 https://www.domain.com;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-NginX-Proxy true;
+        }
+
+        gzip on;
+}
