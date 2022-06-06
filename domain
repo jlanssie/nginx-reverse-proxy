@@ -2,12 +2,11 @@ server {
         listen 2222 default_server;
         listen [::]:2222 ipv6only=on default_server;
 
-        #server_name domain.com www.domain.com;
-        server_name _;
+        server_name domain.com www.domain.com;
 
-        root /var/www/
+        root /var/www/html;
 
-        location ~ /.well-known {
+        location ^~ /.well-known/acme-challenge/ {
                 allow all;
         }
 
@@ -22,13 +21,13 @@ server {
 
         server_name domain.com www.domain.com;
 
-        ssl_certificate     /home/site/etc/ssl/fullchain.pem;
-        ssl_certificate_key /home/site/etc/ssl/privkey.pem;
+        ssl_certificate     /etc/letsencrypt/live/site/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/site/privkey.pem;
 
-        access_log /var/log/access.log;
-        error_log  /var/log/error.log;
+        access_log /var/log/site/access.log;
+        error_log  /var/log/site/error.log;
 
-        root /var/www;
+        root /var/www/html;
 
         location / {
                 index index.html;
