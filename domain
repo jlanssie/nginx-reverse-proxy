@@ -41,7 +41,7 @@ server {
                 internal;
         }
 
-        add_header Content-Security-Policy "script-src 'nonce-$request_id'; 'default-src 'self';";
+        add_header Content-Security-Policy "script-src 'self' 'nonce-$request_id'; default-src 'self';";
         sub_filter_once off;
         sub_filter ‘**NONCE**’ $request_id;
 
