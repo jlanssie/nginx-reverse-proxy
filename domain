@@ -41,9 +41,10 @@ server {
                 internal;
         }
 
-        add_header Content-Security-Policy "script-src 'self' 'nonce-$request_id'; default-src 'self';";
+        add_header Content-Security-Policy "default-src 'self' 'nonce-$request_id'; img-src 'self' www.googletagmanager.com;";
         sub_filter_once off;
-        sub_filter ‘**NONCE**’ $request_id;
+        sub_filter_types *;
+        sub_filter '**NONCE**' $request_id;
 
         gzip on;
         etag on;
